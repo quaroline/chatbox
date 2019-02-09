@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <title>Chat</title>
+    </head>
+
+    <body>
+        <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+        
+        <h1>Socket.Io</h1>
+        <input type="text">
+
+        <div class="messages"></div>
+        
+        <script>
+            const socket = io()
+            socket.on('connect', function(){
+                $(".messages").append('Connected: ' + socket.id + '<br/>');
+                socket.emit('message', 'I am connected as ' + socket.id);
+            })
+
+            socket.on('message', function(message){
+                $(".messages").append(message + '<br>')
+            })
+
+            $(function(){
+                $("input").keydown(function(key){
+                    if (key.keyCode === 13) {
+                        socket.emit('message', $(this).val())
+                        $(this).val('');
+                    }
+                    console.log(key.keyCode)
+                })
+            })
+        </script>
+    </body>
+</html>
