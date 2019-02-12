@@ -11,7 +11,13 @@ io.on('connection', socket => {
     socket.on('message', message => {
         console.log(message)
         socket.broadcast.emit('message', message)
+        //socket.join('contador')
     })
 })
+
+// let counter = 0
+// setInterval(() => {
+//     io.to('contador').emit('message', counter++)
+// }, 1000)
 
 http.listen(3000, function(){})

@@ -1,43 +1,177 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        
-        <title>Chat</title>
-    </head>
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css">
+<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
 
-    <body>
-        <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
-        
-        <h1>Socket.Io</h1>
-        <input type="text">
+<head>
+    <title>Chima ChatBox</title>
+</head>
 
-        <div class="messages"></div>
-        
-        <script>
-            const socket = io()
-            socket.on('connect', function(){
-                $(".messages").append('Connected: ' + socket.id + '<br/>');
-                socket.emit('message', 'I am connected as ' + socket.id);
-            })
+<body>
+    <nav class="site-header sticky-top py-1 navbar-dark bg-dark">
+        <div class="container d-flex flex-column flex-md-row justify-content-between">
+            <a class="py-2" href="#">
+                <img src="http://www.stickpng.com/assets/images/580b585b2edbce24c47b23ed.png" width="20">
+            </a>
+            <a class="text-light py-2 d-none d-md-inline-block" href="#">Item</a>
+            <a class="text-light py-2 d-none d-md-inline-block" href="#">Item</a>
+            <a class="text-light py-2 d-none d-md-inline-block" href="#">Item</a>
+            <a class="text-light py-2 d-none d-md-inline-block" href="#">Item</a>
+            <a class="text-light py-2 d-none d-md-inline-block" href="#">Item</a>
+            <a class="text-light py-2 d-none d-md-inline-block" href="#">Item</a>
+            <a class="text-light py-2 d-none d-md-inline-block" href="#">Item</a>
+        </div>
+    </nav>
 
-            socket.on('message', function(message){
-                $(".messages").append(message + '<br>')
-            })
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+                <div class="sidebar-sticky">
+                    <ul class="nav flex-column">
+                        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                            <span>Usuários</span>
+                        </h6>
+                        <!-- Usuários -->
+                        <li class="nav-item">
+                            <div class="d-flex align-items-center p-3 rounded box-shadow">
+                                <img class="mr-3"
+                                    src="https://pngimage.net/wp-content/uploads/2018/06/gambar-user-png-2.png" alt=""
+                                    width="48" height="48">
+                                <div class="lh-100">
+                                    <h6 class="mb-0 lh-100">{username}</h6>
+                                    <small>{status}</small>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <div class="d-flex align-items-center p-3 rounded box-shadow">
+                                <img class="mr-3"
+                                    src="https://pngimage.net/wp-content/uploads/2018/06/gambar-user-png-2.png" alt=""
+                                    width="48" height="48">
+                                <div class="lh-100">
+                                    <h6 class="mb-0 lh-100">{username}</h6>
+                                    <small>{status}</small>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <div class="d-flex align-items-center p-3 rounded box-shadow">
+                                <img class="mr-3"
+                                    src="https://pngimage.net/wp-content/uploads/2018/06/gambar-user-png-2.png" alt=""
+                                    width="48" height="48">
+                                <div class="lh-100">
+                                    <h6 class="mb-0 lh-100">{username}</h6>
+                                    <small>{status}</small>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <div class="d-flex align-items-center p-3 rounded box-shadow">
+                                <img class="mr-3"
+                                    src="https://pngimage.net/wp-content/uploads/2018/06/gambar-user-png-2.png" alt=""
+                                    width="48" height="48">
+                                <div class="lh-100">
+                                    <h6 class="mb-0 lh-100">{username}</h6>
+                                    <small>{status}</small>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <div class="d-flex align-items-center p-3 rounded box-shadow">
+                                <img class="mr-3"
+                                    src="https://pngimage.net/wp-content/uploads/2018/06/gambar-user-png-2.png" alt=""
+                                    width="48" height="48">
+                                <div class="lh-100">
+                                    <h6 class="mb-0 lh-100">{username}</h6>
+                                    <small>{status}</small>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <div class="d-flex align-items-center p-3 rounded box-shadow">
+                                <img class="mr-3"
+                                    src="https://pngimage.net/wp-content/uploads/2018/06/gambar-user-png-2.png" alt=""
+                                    width="48" height="48">
+                                <div class="lh-100">
+                                    <h6 class="mb-0 lh-100">{username}</h6>
+                                    <small>{status}</small>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <div class="d-flex align-items-center p-3 rounded box-shadow">
+                                <img class="mr-3"
+                                    src="https://pngimage.net/wp-content/uploads/2018/06/gambar-user-png-2.png" alt=""
+                                    width="48" height="48">
+                                <div class="lh-100">
+                                    <h6 class="mb-0 lh-100">{username}</h6>
+                                    <small>{status}</small>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
 
-            $(function(){
-                $("input").keydown(function(key){
-                    if (key.keyCode === 13) {
-                        socket.emit('message', $(this).val())
-                        $(this).val('');
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+                <form class="chat">
+                    <div class="form-group">
+                        <input type="text" id="username" class="username form-control" placeholder="Nickname">
+                    </div>
+                    <div class="form-group">
+                        <div style="width:100%;height:30vw;border:1px;overflow-y: scroll;" class="messages border p-3" id="messages">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="message" class="message form-control" placeholder="Digite sua mensagem.">
+                    </div>
+                    <div class="form-group">
+                        <input value="Enviar mensagem" type="button" class="enviarMensagem btn btn-success"></button>
+                    </div>
+                </form>
+            </main>
+        </div>
+    </div>
+    <script>
+        const socket = io()
+
+        socket.on('connect', function () {
+            $(".messages").append('Seu ID é: ' + socket.id + '<br/>');
+            socket.emit('message', 'Usuário conectado: ' + socket.id);
+        })
+
+        socket.on('message', function(message) {
+            renderMessage(message)
+        })
+
+        function renderMessage(message) {
+            $('.messages').append('<p><strong>' + message.author + ': </strong> ' + message.message + '</p>')
+        }
+
+        $(function () {
+            $("#message").keydown(function (key) {
+            //$('input#enviarMensagem').click(function() {
+                if (key.keyCode === 13) {
+
+                    event.preventDefault()
+
+                    var author = $('#username').val()
+                    var message = $('#message').val()
+
+                    if (author.length && message.length) {
+                        var messageDetails = { 
+                            author: author,
+                            message: message
+                        }
+                        renderMessage(messageDetails)
+                        socket.emit('message', messageDetails)
                     }
-                    console.log(key.keyCode)
-                })
+                }
+                console.log(key.keyCode)
             })
-        </script>
-    </body>
+        })
+    </script>
+</body>
 </html>
